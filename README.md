@@ -20,8 +20,4 @@ Only downside is that it has a small overhead because we put two jars into a and
         
 ### How to build
 
-    gradle clone
-    
-    gradle copyTask
-    
-    gradle build
+    gradle clean build
