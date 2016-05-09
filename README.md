@@ -7,8 +7,6 @@ Only downside is that it has a small overhead because we put two jars into a and
  
     
 ### How to install
-
-    ### How to install
     	
     	repositories {
     	    maven {
