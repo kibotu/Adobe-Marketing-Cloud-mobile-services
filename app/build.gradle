@@ -16,8 +16,30 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+import org.ajoberstar.grgit.Grgit
+
+task clone << {
+    println "git clone https://github.com/Adobe-Marketing-Cloud/mobile-services.git ..."
+    File dir = new File('adobe')
+    if (!dir.exists()) {
+        def grgit = Grgit.clone(dir: dir, uri: 'https://github.com/Adobe-Marketing-Cloud/mobile-services.git')
+    }
+    println "... done."
+}
+
+task copyTask << {
+    copy {
+        from '../adobe/samples/Android/ADBMobileSamples/libs/'
+        into '../app/libs/'
+    }
 }

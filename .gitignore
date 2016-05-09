@@ -89,7 +89,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-
+adobe/
 ### Windows ###
 # Windows image file caches
 Thumbs.db
