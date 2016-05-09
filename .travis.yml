@@ -32,8 +32,6 @@ install: true
 
 script:
   - ./gradlew -v
-  - ./gradlew clone
-  - ./gradlew copyTask
   - ./gradlew clean build --stacktrace
 
 after_failure: true

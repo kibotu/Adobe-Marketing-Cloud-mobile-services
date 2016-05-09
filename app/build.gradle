@@ -37,9 +37,18 @@ task clone << {
     println "... done."
 }
 
-task copyTask << {
+task copyTask (dependsOn: ['clone'])  {
     copy {
         from '../adobe/samples/Android/ADBMobileSamples/libs/'
         into '../app/libs/'
     }
+}
+
+task clean  (dependsOn: ['copyTask']) {
+    println 'clean'
+}
+
+
+beforeEvaluate {
+    tasks.clean.execute()
 }
