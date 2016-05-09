@@ -21,25 +21,19 @@ android:
     # The SDK version used to compile your project
     - android-23
 
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - addon-google_apis-google-23
-
   licenses:
     - android-sdk-license-.+
 
 before_install:
   - git submodule update --init --recursive
   - chmod u+x gradlew
-  - android list sdk --no-ui --all --extended
-  - android list targets
 
 install: true
 
 script:
   - ./gradlew -v
+  - ./gradlew clone
+  - ./gradlew copyTask
   - ./gradlew clean build --stacktrace
 
 after_failure: true
