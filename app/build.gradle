@@ -28,27 +28,21 @@ dependencies {
 
 import org.ajoberstar.grgit.Grgit
 
-task clone << {
+task copyAndCloneTask () {
+
     println "git clone https://github.com/Adobe-Marketing-Cloud/mobile-services.git ..."
+
     File dir = new File('adobe')
     if (!dir.exists()) {
         def grgit = Grgit.clone(dir: dir, uri: 'https://github.com/Adobe-Marketing-Cloud/mobile-services.git')
     }
-    println "... done."
-}
 
-task copyTask (dependsOn: ['clone'])  {
     copy {
         from '../adobe/samples/Android/ADBMobileSamples/libs/'
         into '../app/libs/'
     }
+
+    println "... done."
 }
 
-task clean  (dependsOn: ['copyTask']) {
-    println 'clean'
-}
-
-
-beforeEvaluate {
-    tasks.clean.execute()
-}
+tasks.preBuild.dependsOn copyAndCloneTask
